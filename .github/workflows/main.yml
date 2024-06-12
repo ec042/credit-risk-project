@@ -19,7 +19,7 @@ jobs:
         lfs: true  # This ensures Git LFS files are pulled
 
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v3  # Ensure setup-python@v3 or later is used
       with:
         python-version: 3.11
 
@@ -30,5 +30,4 @@ jobs:
 
     - name: Run tests
       run: |
-        pytest tests/  # Ensure this points to your test directory
-
+        pytest tests/  # Adjust as per your test file structure and location
