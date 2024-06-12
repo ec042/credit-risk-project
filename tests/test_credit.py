@@ -6,7 +6,7 @@ import csv
 import matplotlib.pyplot as plt
 import seaborn as sns
 import sklearn
-CreditRiskData=  pd.read_csv(r"C:/Users/Dell/New folder/credit/train.csv")
+CreditRiskData=  pd.read_csv(r"../test.csv")
 print('Shape before deleting duplicate values:', CreditRiskData.shape)
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, LabelEncoder
