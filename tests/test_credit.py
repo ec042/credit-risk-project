@@ -11,8 +11,15 @@ import os
 # Replace with the URL from your README.md file
 Train="https://drive.google.com/file/d/1u2fbeAC4wgT1uu4_gnrBABU8v6GcV1bw/view?usp=sharing"
 
-# Read dataset from URL
-CreditRiskData = pd.read_csv(Train)
+
+def test_read_csv():
+    try:
+        CreditRiskData = pd.read_csv(Train)
+        assert not CreditRiskData.empty, "Dataset should not be empty"
+        print(CreditRiskData.head())  # Print first few rows to verify
+    except Exception as e:
+        pytest.fail(f"Failed to read dataset from {dataset_path}: {e}")
+        
 print('Shape before deleting duplicate values:', CreditRiskData.shape)
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, LabelEncoder
