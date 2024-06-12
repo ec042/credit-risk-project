@@ -7,11 +7,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import sklearn
 import os
-current_dir = os.path.dirname(os.path.abspath(__file__))
-    # Construct the absolute path to 'test.csv'
-csv_path = os.path.join(current_dir, '..', 'test.csv')
-    # Load the CSV file
-CreditRiskData = pd.read_csv(csv_path)
+
 # Replace with the URL from your README.md file
 train.csv = "https://drive.google.com/file/d/1u2fbeAC4wgT1uu4_gnrBABU8v6GcV1bw/view?usp=sharing"
 
