@@ -6,6 +6,7 @@ import csv
 import matplotlib.pyplot as plt
 import seaborn as sns
 import sklearn
+import os
 current_dir = os.path.dirname(os.path.abspath(__file__))
     # Construct the absolute path to 'test.csv'
 csv_path = os.path.join(current_dir, '..', 'test.csv')
