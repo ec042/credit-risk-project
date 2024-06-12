@@ -9,7 +9,7 @@ import sklearn
 import os
 
 # Replace with the URL from your README.md file
-train.csv = "https://drive.google.com/file/d/1u2fbeAC4wgT1uu4_gnrBABU8v6GcV1bw/view?usp=sharing"
+train.csv="https://drive.google.com/file/d/1u2fbeAC4wgT1uu4_gnrBABU8v6GcV1bw/view?usp=sharing"
 
 # Read dataset from URL
 CreditRiskData = pd.read_csv(train.csv)
