@@ -9,10 +9,10 @@ import sklearn
 import os
 
 # Replace with the URL from your README.md file
-train.csv="https://drive.google.com/file/d/1u2fbeAC4wgT1uu4_gnrBABU8v6GcV1bw/view?usp=sharing"
+Train="https://drive.google.com/file/d/1u2fbeAC4wgT1uu4_gnrBABU8v6GcV1bw/view?usp=sharing"
 
 # Read dataset from URL
-CreditRiskData = pd.read_csv(train.csv)
+CreditRiskData = pd.read_csv(Train)
 print('Shape before deleting duplicate values:', CreditRiskData.shape)
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, LabelEncoder
