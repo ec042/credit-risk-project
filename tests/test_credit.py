@@ -8,7 +8,7 @@ import seaborn as sns
 import sklearn
 import os
 
-dataset_url = "https:\\drive.google.com\file\d\1u2fbeAC4wgT1uu4_gnrBABU8v6GcV1bw\view?usp=drive_link"
+dataset_url = "https://drive.google.com/file/d/1u2fbeAC4wgT1uu4_gnrBABU8v6GcV1bw/view?usp=drive_link"
 
 def test_read_csv():
     try:
