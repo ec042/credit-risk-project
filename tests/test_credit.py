@@ -94,7 +94,7 @@ def test_read_csv():
     except Exception as e:
         pytest.fail(f"Failed to process dataset from {dataset_url}: {e}")
 
-# Load test data
+'''# Load test data
 current_dir = os.path.dirname(os.path.abspath(__file__))
     # Construct the absolute path to 'test.csv'
 csv_path = os.path.join(current_dir, '..', 'test.csv')
@@ -124,6 +124,43 @@ results['Predicted_Credit_Score'] = y_test_pred_decoded
 
 # Save to CSV
 results.to_csv("predicted_credit_scores.csv", index=False)
-print("Predictions saved to predicted_credit_scores.csv")
+print("Predictions saved to predicted_credit_scores.csv")'''
+def test_load_test_data_and_predict():
+    global model
+    if model is None:
+        pytest.fail("Model is not trained. Please run the test_read_csv test first.")
+    try:
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        csv_path = os.path.join(current_dir, '..', 'test.csv')
+        test_data = pd.read_csv(csv_path)
+
+        # Apply label encoders
+        for column in categorical_columns[:-1]:  # Exclude 'Credit_Score'
+            le = label_encoders[column]
+            test_data[column] = le.transform(test_data[column])
+
+        # Apply scaler
+        test_data[numerical_columns] = scaler.transform(test_data[numerical_columns])
+
+        # Remove unnecessary columns
+        X_test_final = test_data.drop(columns=['ID', 'Customer_ID'])
+
+        # Make predictions
+        y_test_pred = model.predict(X_test_final)
+        y_test_pred_proba = model.predict_proba(X_test_final)
+
+        # Decode the predicted labels
+        y_test_pred_decoded = label_encoders['Credit_Score'].inverse_transform(y_test_pred)
+
+        # Prepare the result DataFrame
+        results = test_data[['ID', 'Customer_ID']].copy()
+        results['Predicted_Credit_Score'] = y_test_pred_decoded
+
+        # Save to CSV
+        results.to_csv("predicted_credit_scores.csv", index=False)
+        print("Predictions saved to predicted_credit_scores.csv")
+    except Exception as e:
+        pytest.fail(f"Failed to process test data: {e}")
+
 
 
