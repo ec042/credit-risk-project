@@ -91,7 +91,7 @@ def test_read_csv():
         plt.title('Receiver Operating Characteristic for Multi-Class')
         plt.legend(loc="lower right")
         plt.show()
-except Exception as e:
+    except Exception as e:
         pytest.fail(f"Failed to process dataset from {dataset_url}: {e}")
 
 # Load test data
