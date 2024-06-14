@@ -12,8 +12,7 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score, roc_curve
 
-dataset_url = "https://drive.google.com/file/d/1u2fbeAC4wgT1uu4_gnrBABU8v6GcV1bw/view?usp=sharing"
-
+dataset_url = "https://drive.google.com/uc?export=download&id=1u2fbeAC4wgT1uu4_gnrBABU8v6GcV1bw"
 def test_read_csv():
     try:
         CreditRiskData = pd.read_csv(dataset_url)
