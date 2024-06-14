@@ -8,21 +8,23 @@ import seaborn as sns
 import sklearn
 import os
 
-csv_url = "https://drive.google.com/file/d/1u2fbeAC4wgT1uu4_gnrBABU8v6GcV1bw/view?usp=drive_link"
-
-def download_csv(url):
-    response = requests.get(url)
-    response.raise_for_status()  # Ensure we notice bad responses
-    return StringIO(response.text)
+dataset_url = "https:\\drive.google.com\file\d\1u2fbeAC4wgT1uu4_gnrBABU8v6GcV1bw\view?usp=drive_link"
 
 def test_read_csv():
     try:
-        csv_file = download_csv(csv_url)
-        CreditRiskData = pd.read_csv(csv_file)
+        CreditRiskData = pd.read_csv(dataset_url)
+        print('Shape before deleting duplicate values:', CreditRiskData.shape)
         assert not CreditRiskData.empty, "Dataset should not be empty"
-        print(CreditRiskData.head())  # Print first few rows to verify
-    except Exception as e:
-        pytest.fail(f"Failed to read dataset from {csv_url}: {e}")
+        
+        # Proceed with the rest of the code
+        # Removing duplicate rows if any
+        CreditRiskData = CreditRiskData.dropna()
+        print('Shape After deleting duplicate values:', CreditRiskData.shape)
+
+        # Print sample data
+        print(CreditRiskData.head())
+        
+       
 
 
 print('Shape before deleting duplicate values:', CreditRiskData.shape)
