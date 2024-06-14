@@ -8,10 +8,22 @@ import seaborn as sns
 import sklearn
 import os
 
-# Replace with the URL from your README.md file
-Train="https://drive.google.com/file/d/1u2fbeAC4wgT1uu4_gnrBABU8v6GcV1bw/view?usp=sharing"
-CreditRiskData = pd.read_csv(Train)
-print(CreditRiskData.head()) 
+csv_url = "https://drive.google.com/file/d/1u2fbeAC4wgT1uu4_gnrBABU8v6GcV1bw/view?usp=drive_link"
+
+def download_csv(url):
+    response = requests.get(url)
+    response.raise_for_status()  # Ensure we notice bad responses
+    return StringIO(response.text)
+
+def test_read_csv():
+    try:
+        csv_file = download_csv(csv_url)
+        CreditRiskData = pd.read_csv(csv_file)
+        assert not CreditRiskData.empty, "Dataset should not be empty"
+        print(CreditRiskData.head())  # Print first few rows to verify
+    except Exception as e:
+        pytest.fail(f"Failed to read dataset from {csv_url}: {e}")
+
 
 print('Shape before deleting duplicate values:', CreditRiskData.shape)
 from sklearn.model_selection import train_test_split
@@ -30,13 +42,8 @@ CreditRiskData=CreditRiskData.dropna()
 print('Shape After deleting duplicate values:', CreditRiskData.shape)
 # Printing sample data
 
-
-
-
 # Finding how many missing values are there for each column
 print(CreditRiskData.isnull().sum())
-
-
 
 # Encode categorical variables
 label_encoders = {}
