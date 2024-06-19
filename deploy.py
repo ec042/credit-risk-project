@@ -1,14 +1,16 @@
-import shutil
+import joblib
 import os
 
-# Define the source and destination paths
-source_path = 'credit.pkl'
-destination_dir = 'deployment_dir'
+def main():
+    # Example model (replace with your trained model)
+    model = ...  # Load or define your model here
 
-# Create the destination directory if it doesn't exist
-os.makedirs(destination_dir, exist_ok=True)
+    # Define deployment directory
+    deployment_dir = 'deployment_dir'
+    os.makedirs(deployment_dir, exist_ok=True)
 
-# Copy the model file to the destination directory
-shutil.copy(source_path, destination_dir)
+    # Save model to deployment_dir as credit.pkl
+    joblib.dump(model, os.path.join(deployment_dir, 'credit.pkl'))
 
-print(f'Model deployed to {destination_dir}')
+if __name__ == "__main__":
+    main()
