@@ -9,24 +9,48 @@ on:
       - main
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
-      with:
-        lfs: true  # This ensures Git LFS files are pulled
+      uses: actions/checkout@v2
 
     - name: Set up Python
-      uses: actions/setup-python@v3  # Ensure setup-python@v3 or later is used
+      uses: actions/setup-python@v2
       with:
-        python-version: 3.11
+        python-version: '3.11'
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+
+    - name: Run tests
+      run: pytest tests/
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build-and-test
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Deploy model
+      run: |
+        python deploy.py
+
 
     - name: Run tests
       run: |
