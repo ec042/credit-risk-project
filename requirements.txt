@@ -7,7 +7,6 @@ async-lru
 attrs
 Babel
 backcall
-beautifulsoup
 bleach
 certifi
 cffi
