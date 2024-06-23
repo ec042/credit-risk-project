@@ -120,7 +120,7 @@ uri-template
 urllib3
 wcwidth
 webcolors
-webencodings==0.5.1
-websocket-client==1.5.1
-Werkzeug==2.2.2
-widgetsnbextension==4.0.5
+webencodings
+websocket-client
+Werkzeug
+widgetsnbextension
